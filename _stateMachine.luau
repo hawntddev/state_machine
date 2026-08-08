@@ -60,16 +60,16 @@ end
 function StateMachine:Remove(): ()
 	local onStateRemoved = self._onStateRemoved
 
+	if onStateRemoved then
+		onStateRemoved()
+	end
+
 	self.state = ""
 	self.previousState = ""
 	self.transitionTime = 0
 
 	self._onStateChanged = nil
 	self._onStateRemoved = nil
-
-	if onStateRemoved then
-		onStateRemoved()
-	end
 end
 
 return StateMachine
